@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Live Stock - Stock Predictor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="dark">
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.92/build/spline-viewer.js"></script>
+<spline-viewer url="https://prod.spline.design/xs92gnVZlkp95mD2/scene.splinecode" style="position: fixed; z-index: -1; top: 0; left: 0; width: 100%; height: 100%;"></spline-viewer>
+
+  <div class="live-stock-container">
+    <h2>Live Stock Market Graph</h2>
+
+    <select id="symbolSelect" onchange="fetchStockData()">
+      <option value="AAPL">Apple (AAPL)</option>
+      <option value="TSLA">Tesla (TSLA)</option>
+      <option value="GOOG">Google (GOOG)</option>
+    </select>
+
+    <canvas id="stockChart" width="400" height="200"></canvas>
+
+    <a href="{{ url_for('index') }}"><button>Back to Home</button></a>
+  </div>
+
+  <script>
+    let chart;
+
+    async function fetchStockData() {
+      const symbol = document.getElementById("symbolSelect").value;
+      const apiKey = 'b7b68b333d6944cfa7af6ccca2f7217a';
+const apiUrl = `https://api.twelvedata.com/time_series?symbol=${symbol}&interval=1min&apikey=${apiKey}`;
+
+
+      const response = await fetch(apiUrl);
+      const data = await response.json();
+
+      if (data && data.values) {
+        const labels = data.values.map(point => point.datetime).reverse();
+        const prices = data.values.map(point => point.close).reverse();
+
+        renderChart(labels, prices, symbol);
+      } else {
+        alert("Unable to fetch data. Try again later.");
+      }
+    }
+
+    function renderChart(labels, dataPoints, symbol) {
+      const ctx = document.getElementById("stockChart").getContext("2d");
+
+      if (chart) chart.destroy(); // destroy previous chart
+
+      chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: `${symbol} Price (USD)`,
+            data: dataPoints,
+            borderColor: 'lime',
+            backgroundColor: 'rgba(0, 255, 0, 0.2)',
+            tension: 0.3
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            x: {
+              ticks: { color: 'white' },
+            },
+            y: {
+              ticks: { color: 'white' },
+            }
+          },
+          plugins: {
+            legend: {
+              labels: { color: 'white' }
+            }
+          }
+        }
+      });
+    }
+
+    // Auto-load on page load
+    fetchStockData();
+  </script>
+</body>
+</html>
+
+

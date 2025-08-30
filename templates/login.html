@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - Stock Predictor</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script>
+    function handleLogin(event) {
+      event.preventDefault(); // prevent page reload
+      // In real app: validate credentials
+      window.location.href = "{{ url_for('index') }}"; // redirect to home
+    }
+  </script>
+</head>
+<body class="dark">
+  <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.92/build/spline-viewer.js"></script>
+<spline-viewer url="https://prod.spline.design/xs92gnVZlkp95mD2/scene.splinecode" style="position: fixed; z-index: -1; top: 0; left: 0; width: 100%; height: 100%;"></spline-viewer>
+
+  <div class="login-container">
+    <h2>User Login</h2>
+    <form onsubmit="handleLogin(event)">
+      <input type="text" placeholder="Username" required>
+      <input type="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+  <footer>
+        <p>&copy; 2025 Stock Predictor Chatbot</p>
+    </footer>
+</body>
+</html>

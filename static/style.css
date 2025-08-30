@@ -1,0 +1,115 @@
+body.dark {
+  background-color: #000;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  padding: 20px;
+  background: #111;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo-title img {
+  height: 50px;
+  border-radius: 10px;
+  margin: 0;
+}
+
+.logo-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+header h1 {
+  font-size: 24px;
+}
+
+.nav-buttons button {
+  margin-left: 10px;
+  padding: 10px;
+  background: green;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.chat-container {
+  max-width: 600px;
+  margin: 40px auto;
+  background: rgba(17, 17, 17, 0.4);
+  backdrop-filter: blur(6px);
+  border: 1px solid #444;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+
+#chatbox {
+  height: 300px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+.botText, .userText {
+  margin: 10px 0;
+}
+
+.botText span, .userText span {
+  background: #333;
+  padding: 10px;
+  border-radius: 10px;
+  display: inline-block;
+}
+
+.userText span {
+  background: #006400;
+}
+
+input[type="text"] {
+  width: 80%;
+  padding: 10px;
+}
+
+button {
+  padding: 10px;
+  background: green;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+/* Login Page */
+.login-container {
+  max-width: 400px;
+  margin: 100px auto;
+  text-align: center;
+}
+
+.login-container input {
+  width: 80%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+/* Live Stock */
+.live-stock-container {
+  max-width: 600px;
+  margin: 100px auto;
+  text-align: center;
+}
+
+footer {
+    background-color: #13131376;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
